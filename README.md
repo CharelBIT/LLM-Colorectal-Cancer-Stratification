@@ -116,23 +116,6 @@ docker compose -f docker/compose.yaml up -d
 docker exec -it llm-rc /bin/bash
 ```
 
-### 运行示例
-```bash
-python ChatWithLLM/chat_offline.py --input data/raw_reports/ --out outputs/json/
-python parse_result/parse_llm_json.py --in outputs/json/ --out outputs/parsed/
-python analysis/boostrap_analysis.py
-```
-
-## 环境依赖 (示例)
-- Python >= 3.10  
-- 主要库：pandas, numpy, scikit-learn, openpyxl, matplotlib  
-- 可选：transformers / vLLM / fastapi (若扩展服务化)  
-
-建议使用：
-```bash
-pip install -r requirements.txt
-```
-(请自行生成 requirements.txt)
 
 ## 数据字段 (核心特征示例)
 - CRM受累情况  
