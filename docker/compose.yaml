@@ -1,0 +1,39 @@
+services:
+  ollama:
+    build: .
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+      - ./entrypoint.sh:/entrypoint.sh
+    networks:
+      - deepseek
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    pull_policy: always
+    tty: true
+    entrypoint: ["/usr/bin/bash", "/entrypoint.sh"]
+
+  webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3001:8080"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    volumes:
+      - open-webui:/app/backend/data
+    restart: always
+    networks:
+      - deepseek
+
+networks:
+  deepseek:
+
+volumes:
+  ollama:
+  open-webui:
