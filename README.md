@@ -8,7 +8,7 @@
 
 ## 研究流程图
 
-待补充
+![项目 Logo](./figure/workflow.jpg)
 
 ## 目录结构
 ```
